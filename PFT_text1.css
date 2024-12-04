@@ -1,0 +1,239 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg,  #31013a, #011848, #49127c);
+    height: 650px;;
+  }
+
+  img {
+    float: left;
+    width: 80px;
+    height: 70px;
+}
+
+header {
+  background:linear-gradient(90deg,  #31013a, #011848, #49127c);
+  /* -webkit-background-clip: text; */
+  /* background-clip: text; */
+  color: rgb(253, 179, 6);
+  /* -webkit-text-fill-color: transparent; 
+  transition: background 0.3s ease, -webkit-text-fill-color 0.3s ease; */
+  cursor: pointer;
+  text-align: left;
+  padding: 5px;
+  border-left: 0px;
+  margin-left: 0px;
+  height: 10px;
+}
+
+  .title{
+    padding-left: 40px;
+    /* padding-top: 0px; */
+    margin-top: 17px;
+    font-size: 40px;
+    text-align: center;
+   
+  }
+
+  .subtitle{
+    text-align: center;
+    /* margin-top: 7px;
+    margin-left: 497px;
+    width: 35px;
+    height: 35px; */
+    
+  }
+
+  .btn{
+    
+    margin-top: -25px;
+    margin-right: 7px;
+    width: 35px;
+    height: 35px;
+  }
+
+  /* .btn1{
+    
+    margin-top: 7px;
+    width: 75px;
+    height: 35px;
+  } */
+  
+
+  
+
+  nav {
+    /* background: linear-gradient(15deg,  #31013a, #011848, #013c30); */
+    background:linear-gradient(90deg,  #31013a, #011848, #49127c);
+    /* margin-top: 0px; */
+    padding-top: 0px;
+    margin-top: 0px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+  }
+  
+  nav li {
+    float: left;
+  }
+  
+  nav a {
+    display: block;
+    /* font-size: 18px; */
+    color: rgb(152, 246, 242);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  nav a:hover {
+    background-color: #06bbf8;
+    color: white;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  p{
+    color: white;
+    font-size: 24px;
+  }
+  .card {
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    width: 218px;
+    height: 218px;
+    border-radius: 8px;
+    background: linear-gradient(15deg,  #4120d4, #552599, #2ddebb);
+    padding-top: 46px;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+  }
+
+  .card:hover {
+    background: linear-gradient(-45deg,  #66e4e2,  #2497e4,#2a017c);
+    color: #bc0e0e; /* Optionally, change the text color on hover */
+    /* transition: background-color 0.3s ease; */
+}
+
+
+.h2_1{
+  margin-top: -510px;
+  /* position: fixed; */
+  
+}
+
+.h2_2{
+  margin-top: -550px;
+  /* position: fixed; */
+}
+
+.h2_3{
+  margin-top: -590px;
+  /* position: fixed; */
+
+}
+
+.h2_4{
+  margin-top: -630px;
+  /* position: fixed; */
+}
+
+.h2_5{
+  margin-top: -665px;
+  /* position: fixed; */
+}
+
+
+
+
+/* Styles specific to the home page */
+#homePage {
+  background-color: #011848;
+  color: white;
+}
+
+/* Styles specific to the income page */
+#incomePage {
+  background-color: #011848;
+  color: white;
+}
+
+/* Styles specific to the expenses page */
+#expensesPage {
+  background-color: #011848;
+  color: white;
+}
+
+/* Styles specific to the budgets page */
+#budgetsPage {
+  background-color:#011848;
+  color: white;
+}
+
+/* Styles specific to the reports page */
+#reportsPage {
+  background-color:#011848;
+  color: white;
+}
+
+/* Styles specific to the about page */
+#aboutPage {
+  background-color: #011848;
+  color: white;
+}
+
+/* ... any additional styles you want to add ... */
+
+
+canvas {
+  padding-left: 840px;
+  padding-top: 0px;
+  margin-left: -15px;
+  margin-top: -0px;
+  /* margin-bottom: 175px; */
+}
+
+
+
+
+.li{
+  font-size: 17px;
+  color: white;
+  margin-top: -42px;
+  margin-left: -15px;
+  padding: 20px;
+  
+}
+
+/* .Bar{
+  margin-top: 10px;
+  margin-left: 580px;
+  margin-right: 580px;
+
+} */
+
+.grid{
+  position: absolute;
+}
+
+.grid1{
+  margin-left: -15px;
+  margin-top: 10px;
+}
+
+
+
+
+
+  
+  

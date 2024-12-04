@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Finance Tracker</title>
+  <link rel="stylesheet" href="PFT_text1.css">
+  <script src="https://kit.fontawesome.com/c5a94ea724.js" crossorigin="anonymous"></script>
+  <!-- <meta http-equiv="refresh" content="100"> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+    <ul >
+    <li><img src="Images\PFT_Symbol.png"></li>
+    <li><h1 class="title">Personal Finance Tracker</h1></li>
+    <li style="display: flex;">
+            <h4 class="subtitle">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label for="incomeDate" style="color: blueviolet;">Today:&emsp;</label><input  type="date" id="incomeDate" required style="color: rgb(79, 12, 214) ;font-size:20px" ></button>&emsp;</h4>
+    </li>
+  <br>
+  <br>
+  <li style="display: flex;">&emsp;&emsp;&emsp;<button class="btn"  style="color: rgb(79, 12, 214) ;" onclick="showPopup()"><i class="fa fa-gear" style="font-size:20px;"></i></button></li>
+  <li style="display: flex;"><button class="btn"  style="color: rgb(79, 12, 214) ;"><i class="fa fa-bell-o" style="font-size:20px;"  onclick="showPopup1()"></i></button></li>
+  <li style="display: flex;"><button class="btn"  style="color: rgb(79, 12, 214) ;"><i class="fas fa-user-alt" style="font-size:20px;"  onclick="showPopup2()"></i></button></li>
+  </ul>
+</nav>
+  </header>
+
+  <nav>
+    <ul>
+      <br><br>
+      <li style="display: flex;"><a href="#" onclick="loadContent('home')">&emsp;&emsp;Dashboard&emsp;&emsp;&emsp;&emsp;</a></li>
+      <li style="display: flex;"><a href="#" onclick="loadContent('income')">&emsp;&emsp;&emsp;&emsp;Income&emsp;&emsp;&emsp;&emsp;</a></li>
+      <li style="display: flex;"><a href="#" onclick="loadContent('expenses')">&emsp;&emsp;&emsp;&emsp;Expenses&emsp;&emsp;&emsp;&emsp;</a></li>
+      <li style="display: flex;"><a href="#" onclick="loadContent('budgets')">&emsp;&emsp;&emsp;&emsp;Budgets&emsp;&emsp;&emsp;&emsp;</a></li>
+      <li style="display: flex;"><a href="#" onclick="loadContent('reports')">&emsp;&emsp;&emsp;&emsp;Reports</a></li>
+      <li style="display: flex;"><a href="#" onclick="loadContent('about')">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;About/Contact&emsp;</a></li>
+    </ul>
+  </nav>
+ 
+  <div id="legend-container"></div>
+
+  <canvas id="myChart" style="max-width: 35%; max-height: 35%;"></canvas>
+<script>
+    const xValues = ["SALARY","LAND", "HOUSE", "JEWELLERY", "VEHICLES", "STOCK"];
+    const yValues = ["300","150", "100", "125", "75", "90"];
+    const barColors = ["brown","red", "green", "blue", "yellow", "pink"];
+    const legendLabels = xValues.map(label => label.split('').join('\n'));
+
+    Chart.plugins.register({
+        afterDatasetsDraw: function (chart) {
+            var ctx = chart.ctx;
+
+            chart.data.datasets.forEach(function (dataset, i) {
+                var meta = chart.getDatasetMeta(i);
+                if (!meta.hidden) {
+                    meta.data.forEach(function (element, index) {
+                        // Draw the text in black, with the specified font
+                        ctx.fillStyle = 'black';
+
+                        var fontSize = 14;
+                        var fontStyle = 'bold';
+                        var fontFamily = 'Arial';
+                        ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
+                        // Just naively convert to string for now
+                        var dataString = '$' + dataset.data[index].toString();
+
+                        // Make sure alignment settings are correct
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+
+                        var padding = 5;
+                        var position = element.tooltipPosition();
+                        ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+                    });
+                }
+            });
+        }
+    });
+
+    new Chart("myChart", {
+        type: "doughnut",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "ASSETS DISTRIBUTION",
+                fontSize: 15,
+                fontColor: 'white',
+            },
+            legend: {
+                display: true,
+                position: 'chartArea',
+                labels: {
+                    fontSize: 13, // Set the desired legend font size
+                    fontColor: 'white',
+                    padding: 10,
+                    maxWidth: 50,
+                    fontFamily:'Britannic Bold'
+                }
+            },
+            plugins: {
+                datalabels: {
+                    display: false, // Hide the percentage values
+                }
+            }
+        }
+    });
+    
+</script>
+
+<canvas id="barGraph" class="grid1" style="max-width: 35%; max-height: 35%;"></canvas>
+
+
+<script>
+    const x1Values = ["RENTAL", "PERSONAL", "MEDICAL", "BILL"];
+    const y1Values = ["150", "185", "160", "125"];
+    const bar1Colors = ["red", "green", "blue", "orange"];
+
+    const dataset = {
+        labels: x1Values,
+        datasets: [{
+            data: y1Values.map((value, index) => ({
+                x: x1Values[index],
+                y: parseInt(value),
+                color: bar1Colors[index]
+            }))
+        }]
+    };
+
+    Chart.plugins.register({
+        afterDatasetsDraw: function (chart) {
+            var ctx = chart.ctx;
+
+            chart.data.datasets.forEach(function (dataset, i) {
+                var meta = chart.getDatasetMeta(i);
+                if (!meta.hidden) {
+                    meta.data.forEach(function (element, index) {
+                        // Draw the text in black, with the specified font
+                        ctx.fillStyle = 'black';
+
+                        var fontSize = 14;
+                        var fontStyle = 'bold';
+                        var fontFamily = 'Arial';
+                        ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
+                        // Just naively convert to string for now
+                        var dataString = '$' + dataset.data[index].toString();
+
+                        // Make sure alignment settings are correct
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+
+                        var padding = 5;
+                        var position = element.tooltipPosition();
+                        ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+                    });
+                }
+            });
+        }
+    });
+
+    
+
+    new Chart("barGraph", {
+        type: "bar",
+        data: {
+            labels: x1Values,
+            datasets: [{
+                backgroundColor: bar1Colors,
+                data: y1Values
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "EXPENSES DISTRIBUTION",
+                fontSize: 15,
+                fontColor: 'white',
+            },
+            legend: {
+                display: false, // Hide the legend
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    // fontColor: 'white',
+                    grid: {
+                        display: false,
+                       
+                    },
+                    ticks: {
+                    color: 'white', // Change y-axis label color
+                    title: {
+                    color: 'white',
+                }
+                }
+                },
+                x: {
+                    beginAtZero: true,
+                    // fontColor: 'white',
+                    grid: {
+                        display: false,
+                        
+                    },
+                    ticks: {
+                    color: 'white', // Change y-axis label color
+                    title: {
+                    color: 'white',
+                }
+                }
+                }
+            },
+            plugins: {
+                datalabels: {
+                    display: false, // Hide the percentage values
+                }
+            }
+        }
+    });
+    
+</script>
+
+
+ <!-- ... your existing HTML ... -->
+
+<main id="homePage">
+    <!-- Content dynamically loaded here based on user navigation for the home page -->
+  </main>
+  
+  <main id="incomePage">
+    <!-- Content dynamically loaded here based on user navigation for the income page -->
+  </main>
+  
+  <main id="expensesPage">
+    <!-- Content dynamically loaded here based on user navigation for the expenses page -->
+  </main>
+  
+  <main id="budgetsPage">
+    <!-- Content dynamically loaded here based on user navigation for the budgets page -->
+  </main>
+  
+  <main id="reportsPage">
+    <!-- Content dynamically loaded here based on user navigation for the reports page -->
+  </main>
+  
+  <main id="aboutPage">
+    <!-- Content dynamically loaded here based on user navigation for the about page -->
+  </main>
+  
+  <!-- ... your existing JavaScript ... -->
+  
+  
+
+  <script src="PFT_text1.js"></script>
+</body>
+</html>
